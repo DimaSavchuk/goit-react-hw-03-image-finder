@@ -6,7 +6,7 @@ const ImageGalleryItem = ({ image, onItemClick }) => {
   const { largeImageURL, tags } = image || {};
 
   const handleClick = () => {
-    onItemClick();
+    onItemClick(image);
   };
 
   return (

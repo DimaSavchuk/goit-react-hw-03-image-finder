@@ -12,6 +12,7 @@ export class App extends Component {
     query: '',
     images: [],
     page: 1,
+    per_page: 12,
     isShowButton: false,
     isEmpty: false,
     isLoading: false,
@@ -41,7 +42,8 @@ export class App extends Component {
 
       this.setState(prevState => ({
         images: [...prevState.images, ...hits],
-        isShowButton: currentPage < Math.ceil(totalHits / 12),
+        isShowButton:
+          this.state.page < Math.ceil(totalHits / this.state.per_page),
       }));
     } catch (error) {
       this.setState({ error: error.message });
@@ -85,14 +87,17 @@ export class App extends Component {
           images={this.state.images}
           onItemClick={this.handleImageClick}
         />
-        <Button onClick={this.handleOnClick} />
 
-        {this.state.showModal && (
-          <Modal
-            image={this.state.selectedImage}
-            onClose={this.handleModalClose}
-          />
-        )}
+        {this.state.isShowButton && <Button onClick={this.handleOnClick} />}
+
+        {this.state.showModal &&
+          this.state.showModal &&
+          this.state.selectedImage && (
+            <Modal
+              image={this.state.selectedImage}
+              onClose={this.handleModalClose}
+            />
+          )}
       </>
     );
   }

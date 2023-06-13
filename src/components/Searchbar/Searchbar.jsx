@@ -8,6 +8,7 @@ import {
   SearchFormInput,
 } from './Searchbar.styled';
 
+import { FiSearch } from 'react-icons/fi';
 export class Searchbar extends Component {
   state = {
     search: '',
@@ -28,6 +29,7 @@ export class Searchbar extends Component {
       <SearchBar>
         <SearchForm onSubmit={this.handleSubmit}>
           <SearchFormButton type="submit">
+            <FiSearch fontSize="2em" />
             <SearchFormButtonLabel>Search</SearchFormButtonLabel>
           </SearchFormButton>
 
